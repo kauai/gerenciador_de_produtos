@@ -4,7 +4,8 @@ import logo from "./../logo.svg";
 const Nav = () => (
     <div className="App">
     <header className="App-header">
-      <div>
+      <div className="box-brand">
+        <span className="brand-tag">Gerenciador de conteudo</span>
         <img src={logo} className="App-logo" alt="logo" />
       </div>
 
