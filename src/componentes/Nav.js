@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Route, Link } from 'react-router-dom'
 import logo from "./../logo.svg";
 
 const Nav = () => (
@@ -11,21 +12,11 @@ const Nav = () => (
 
       <nav className="nav-menu">
         <ul className="menu">
-          <li>
-            <a>Home</a>
-          </li>
-          <li>
-            <a>Sobre</a>
-          </li>
-          <li>
-            <a>Contato</a>
-          </li>
-          <li>
-            <a>Number</a>
-          </li>
-          <li>
-            <a>Logout</a>
-          </li>
+          <li><Link to="/">Home</Link></li>
+          <li><Link to="/sobre">Sobre</Link></li>
+          <li><Link to="/produtos">Produtos</Link></li>
+          <li><a>Number</a></li>
+          <li><a>Logout</a></li>
         </ul>
       </nav>
     </header>
