@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
-import { Route } from 'react-router-dom'
+import { Route,Link } from 'react-router-dom'
 import ProdutosHome from './ProdutosHome'
+import Categoria from './Categoria'
 
 export default class Produtos extends Component {
   render() {
@@ -11,11 +12,12 @@ export default class Produtos extends Component {
               <Route exact={this.props.match.url} component={ProdutosHome}/> 
             */}
                <Route exact path={this.props.match.url} component={ProdutosHome}/> 
+               <Route exact path={`${this.props.match.url}/categoria/:catId`} component={Categoria}/> 
         </section>
-        <asside className="categorias">
+        <aside className="categorias">
             <h3>Categoria</h3>
-            <p>Link para categoria</p>
-        </asside>
+            <Link to="/produtos/categoria/1">Link categoria 101</Link>
+        </aside>
       </>
     )
   }
