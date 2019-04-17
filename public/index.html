@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <meta name="theme-color" content="#000000" />
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    <title>React App</title>
+    <style>
+      .App {
+  /* text-align: center; */
+}
+
+h1 {
+  margin: 0;
+  /* box-shadow: 3px 3px 3px #0000003d; */
+  font-family: roboto;
+  background: #61dafb;
+  letter-spacing: 2px;
+  padding: 0 20PX;
+  font-size: 30px;
+  color: #fff;
+}
+ul{
+  list-style:none;
+}
+.none{
+  display:none;
+}
+
+.App-logo {
+  animation: App-logo-spin infinite 20s linear;
+  width: 100px;
+  pointer-events: none;
+}
+
+/* .App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+} */
+
+.App-header {
+  background-color: #282c34;
+  display:flex;
+  justify-content: space-between;
+  padding:0 20px;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+.menu{
+    /* display: -webkit-flex; */
+    display: flex;
+    align-items: center;
+    flex-basis: 100%;
+    list-style: none;
+    -webkit-justify-content: space-between;
+    justify-content: space-between;
+}
+.menu li a{
+  font-size:18px;
+  color:#fff;
+  cursor: pointer;
+}
+
+.nav-menu{
+  width:32%;
+  display: flex;
+  margin-right: 35px;
+}
+
+.container {
+  /* height: calc(100vh - 75px); */
+  /* align-items: flex-start; */
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
+}
+
+.comments {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 40px;
+}
+
+p{
+    background:#252c5d;
+    padding: 10px;
+    color: #FFF;
+    width: 33.5%;
+    transition:1s ease-in-out;
+}
+
+textarea{
+  width:30%;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.buttonA{
+    margin:5px;
+    padding: 10px;
+    background: #606060;
+    color: #fff;
+    border: none;
+    font-size: 20px;
+}
+.buttonB{
+    margin:5px;
+    padding: 10px;
+    background: #606060;
+    color: #fff;
+    border: none;
+    font-size: 20px;
+}
+
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+ </body>
+</html>
