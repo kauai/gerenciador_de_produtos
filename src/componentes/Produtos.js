@@ -1,10 +1,24 @@
-import React, { Component } from 'react'
+import React, { Component,Fragment } from 'react'
 import { Route,Link } from 'react-router-dom'
+import axios from 'axios'
+
 import ProdutosHome from './ProdutosHome'
 import Categoria from './Categoria'
 
 export default class Produtos extends Component {
-  render() {
+    state = {
+        categorias:[]
+    }
+
+
+    async componentDidMount(){
+        const categorias = (await axios.get('http://localhost:3001/categorias')).data
+        this.setState({ categorias })
+    }
+
+
+   render() {
+      // console.log(this.state.categorias)
     return (
       <>
         <section className="produtos">
@@ -16,7 +30,9 @@ export default class Produtos extends Component {
         </section>
         <aside className="categorias">
             <h3>Categoria</h3>
-            <Link to="/produtos/categoria/1">Link categoria 101</Link>
+            {this.state.categorias && this.state.categorias.map(item => {
+                return <Fragment key={Math.floor((Math.random() * 3000) + 4)}><Link to={`/produtos/categoria/${item.id}`}>{item.categoria}</Link><br/></Fragment>
+            })}
         </aside>
       </>
     )

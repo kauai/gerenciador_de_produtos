@@ -1,10 +1,8 @@
-import React, { Component } from 'react'
+import React, { Component,useState } from 'react'
+import axios from 'axios'
 
-const ProdutosHome = () => 
-(
-    <div> 
-        <h1>Produtos Home</h1>
-    </div>
-)
+function loadProdutos(){
+    return <h1>testes</h1>
+}
 
-export default ProdutosHome
+export default loadProdutos
