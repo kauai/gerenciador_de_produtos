@@ -1,8 +1,44 @@
-import React, { Component,useState } from 'react'
+import React, { Component,useState,useEffect} from 'react'
 import axios from 'axios'
+import { MdFavorite } from 'react-icons/md';
+import { MdFavoriteBorder } from 'react-icons/md';
 
-function loadProdutos(){
-    return <h1>testes</h1>
+function ProdutosHome(){
+   const [ produtos, setProdutos ] = useState([])
+   const [ favoritos, setFavoritos ] = useState('')
+
+   useEffect(() => {
+     axios.get(`http://localhost:3001/produtos`)
+     .then(item => {
+         setProdutos(item.data)
+     })
+   },[])
+
+   useEffect(() => {
+       const filtered = produtos.filter(item => item.favorite)
+       document.title = filtered.length
+         setFavoritos(filtered.length)
+   },[ produtos ])
+
+   function handleFavorite(produto){
+       const newProdutos = produtos.map(item => {
+           return item.produto == produto ? {...item,favorite:!item.favorite} : item
+       })
+       console.log(newProdutos)
+       setProdutos(newProdutos)
+   }
+    
+    return (
+        <div>
+          <h1><span style={{color:"#ec6c63"}}>{ favoritos } <MdFavoriteBorder size={'.8em'}/></span></h1>
+           <h1 style={{color:'#606060'}}>Todos Produtos</h1>
+            {produtos.map(item => {
+                // const style = item.favorite ? {color:'purple'} : {color:''}
+                let Favorite = item.favorite ? MdFavorite : MdFavoriteBorder
+                return <h1>{item.produto} <Favorite color="#ec6c63" size=".8em" onClick={() => handleFavorite(item.produto)}/></h1>
+            })}
+        </div>
+    )
 }
 
-export default loadProdutos
+export default ProdutosHome
