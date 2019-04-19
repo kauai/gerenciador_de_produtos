@@ -3,14 +3,16 @@ import axios from 'axios'
 import { MdFavorite } from 'react-icons/md';
 import { MdFavoriteBorder } from 'react-icons/md';
 
-function ProdutosHome(){
+function ProdutosHome() {
    const [ produtos, setProdutos ] = useState([])
    const [ favoritos, setFavoritos ] = useState('')
+   const [ load , setLoad ] = useState(false)
 
    useEffect(() => {
      axios.get(`http://localhost:3001/produtos`)
      .then(item => {
          setProdutos(item.data)
+         setLoad(true)
      })
    },[])
 
@@ -29,9 +31,10 @@ function ProdutosHome(){
    }
     
     return (
-        <div>
+        <div style={{position:'relative'}}>
           <h1><span style={{color:"#ec6c63"}}>{ favoritos } <MdFavoriteBorder size={'.8em'}/></span></h1>
            <h1 style={{color:'#606060'}}>Todos Produtos</h1>
+           {!load && <div className="loadinsta2 loadinsta"></div>}
             {produtos.map(item => {
                 // const style = item.favorite ? {color:'purple'} : {color:''}
                 let Favorite = item.favorite ? MdFavorite : MdFavoriteBorder

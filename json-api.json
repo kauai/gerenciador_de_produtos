@@ -1,0 +1,18 @@
+{
+    "produtos":[
+       {"catId":1,"id":123,"produto":"Sunzal Surf shop"},
+       {"catId":1,"id":145,"produto":"Rip curl"},
+       {"catId":1,"id":167,"produto":"Mormai"},
+       {"catId":3,"id":189,"produto":"Bela Donna"},
+       {"catId":2,"id":111,"produto":"Tahiti"},
+       {"catId":4,"id":129,"produto":"Cia surf"},
+       {"catId":4,"id":121,"produto":"Projeto ondas"},
+       {"catId":4,"id":1222,"produto":"Surfistas para sempre"}
+    ],
+    "categorias":[
+        {"id":1,"categoria":"Surf wear"},
+        {"id":2,"categoria":"Restaurantes"},
+        {"id":3,"categoria":"Pizzarias"},
+        {"id":4,"categoria":"Escolas de surf"}
+    ]
+}
