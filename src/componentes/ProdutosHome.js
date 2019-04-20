@@ -1,5 +1,6 @@
 import React, { Component,useState,useEffect} from 'react'
 import axios from 'axios'
+import FormModal from './FormModal'
 import { MdFavorite } from 'react-icons/md';
 import { MdFavoriteBorder } from 'react-icons/md';
 
@@ -22,7 +23,7 @@ function ProdutosHome() {
          setFavoritos(filtered.length)
    },[ produtos ])
 
-   function handleFavorite(produto){
+   function handleFavorite(produto) {
        const newProdutos = produtos.map(item => {
            return item.produto == produto ? {...item,favorite:!item.favorite} : item
        })

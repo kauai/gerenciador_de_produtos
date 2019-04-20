@@ -16,23 +16,31 @@ export default class Categoria extends Component {
     }
 
     loadData = async (id) => {
-        this.setState({ load:false })
         let produtos = (await axios.get(`http://localhost:3001/produtos?id=${id}`)).data
         let categorias = (await axios.get(`http://localhost:3001/categorias?id=${id}`)).data
+        
+        //if checando se vc deletou a categoria e ainda assim o sistem
+        //procura acategoria pelo o id da url
+        if(!categorias.length){
+          this.props.history.push('/produtos')
+          return
+        }
+        
         const { categoria }   = categorias.filter(item => item.id == id)[0]
-        console.log('produtos',produtos)
+        console.log('produtos',categoria)
         this.setState({ produtos,categoria,load:true })
     }
 
     componentWillReceiveProps({ match:{ params:{ catId }} }){
+        this.setState({ load:false })
         this.loadData(catId)
     }
 
 
   render() {
+    console.log(this.props)
     // const target = this.state.categoria[0]
     // const data = Object.assign({},target);
-    console.log('log load',this.state.load)
     return (
 
       <div style={{position:'relative'}}>
