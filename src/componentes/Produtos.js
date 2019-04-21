@@ -2,6 +2,7 @@ import React, { Component,Fragment } from 'react'
 import { MdDeleteForever } from 'react-icons/md'
 import { Route,Link } from 'react-router-dom'
 import axios from 'axios'
+import Api from './Api'
 
 import ProdutosHome from './ProdutosHome'
 import Categoria from './Categoria'
@@ -20,13 +21,15 @@ export default class Produtos extends Component {
     }
 
     updateCategoria = async () => {
-      const categorias = (await axios.get('http://localhost:3001/categorias')).data
+      // const categorias = (await axios.get('http://localhost:3001/categorias')).data
+      const categorias = await Api.loadCategorias()
       this.setState({ categorias })
     }
 
     removeCategoria = async (e,catdId) => {
        e.preventDefault()
-       const categorias = await axios.delete(`http://localhost:3001/categorias/${catdId}`)
+      //  const categorias = await axios.delete(`http://localhost:3001/categorias/${catdId}`)
+       const categorias = await Api.deleteCategoria(catdId)
        this.updateCategoria()
     }
 
