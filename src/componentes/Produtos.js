@@ -46,7 +46,7 @@ export default class Produtos extends Component {
       const n = new Noty({
         text: 'Tem certeza que deletar??',
         theme:"bootstrap-v4",
-        type:'success',
+        type:'warning',
         buttons: [
           Noty.button('YES', 'btn btn-success', function () {
               console.log('button 1 clicked');
