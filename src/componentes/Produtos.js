@@ -2,23 +2,21 @@ import React, { Component,Fragment } from 'react'
 import { MdDeleteForever } from 'react-icons/md'
 import { Route,Link } from 'react-router-dom'
 import Noty from 'noty'
-import axios from 'axios'
-import Api from './Api'
 
 import ProdutosHome from './ProdutosHome'
 import Categoria from './Categoria'
 import FormModal from './FormModal';
+import Api from './Api'
 
 export default class Produtos extends Component {
     state = {
-        categorias:[],
         modal:false,
         classe:''
     }
 
 
     componentDidMount(){
-       this.updateCategoria()
+       this.props.loadCategorias()
     }
 
     showInfo(message){
@@ -64,15 +62,9 @@ export default class Produtos extends Component {
       n.show()
     }
 
-    updateCategoria = async () => {
-      // const categorias = (await axios.get('http://localhost:3001/categorias')).data
-      const categorias = await Api.loadCategorias()
-      this.setState({ categorias })
-    }
-
+ 
     removeCategoria = async (e,catdId) => {
        e.preventDefault()
-      //  const categorias = await axios.delete(`http://localhost:3001/categorias/${catdId}`)
           const categorias = await Api.deleteCategoria(catdId)
           this.showSuccess('Categoria deletada com sucesso')
           this.updateCategoria()
@@ -112,7 +104,7 @@ export default class Produtos extends Component {
                   marginBottom:'15px',
                   border:'none'
               }}>Nova categoria</button>
-                {this.state.categorias && this.state.categorias.map(item => {
+                {this.props.categorias.map(item => {
                 return <Fragment key={Math.floor((Math.random() * 3000) + 4)}>
                 <Link 
                 style={{

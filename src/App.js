@@ -10,8 +10,15 @@ import './noty.css'
 
 class App extends Component {
   state = {
-    initial:''
+    initial:'',
+    categorias:[]
   };
+
+  updateCategoria = async () => {
+    const categorias = await this.props.api.loadCategorias()
+    this.setState({ categorias })
+  }
+
 
 
   render() {
@@ -22,7 +29,9 @@ class App extends Component {
           <div className="container">
               <Route exact path="/" component={Home}/>
               <Route path="/sobre" component={Sobre}/>
-              <Route path="/produtos" component={Produtos}/>
+              <Route path="/produtos" render={(props) => {
+                  return <Produtos categorias={this.state.categorias} {...props} loadCategorias={this.updateCategoria}/>
+              }}/>
           </div>
         </Fragment>
       </Router>
