@@ -4,6 +4,9 @@ import Nav from './componentes/Nav'
 import Home from './componentes/Home'
 import Sobre from './componentes/Sobre'
 import Produtos from './componentes/Produtos'
+import './bootstrap-v4.css'
+import './noty.css'
+
 
 class App extends Component {
   state = {

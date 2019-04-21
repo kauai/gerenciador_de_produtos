@@ -39,7 +39,7 @@ function ProdutosHome() {
             {produtos.map(item => {
                 // const style = item.favorite ? {color:'purple'} : {color:''}
                 let Favorite = item.favorite ? MdFavorite : MdFavoriteBorder
-                return <h1>{item.produto} <Favorite color="#ec6c63" size=".8em" onClick={() => handleFavorite(item.produto)}/></h1>
+                return <h1>{item.produto} <Favorite className="favorite" style={{cursor:'pointer'}} color="#ec6c63" size=".8em" onClick={() => handleFavorite(item.produto)}/></h1>
             })}
         </div>
     )

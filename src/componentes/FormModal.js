@@ -2,7 +2,7 @@ import React, { Component,useState } from 'react'
 import axios from 'axios'
 const uuidv1 = require('uuid/v1');
 
-const FormModal = ({ esconder,classe, opacity ,closeModal,update }) => {
+const FormModal = ({ esconder,classe, opacity ,closeModal,update,success }) => {
     const [input, setInput ] = useState('')
 
     function syncForm(e){
@@ -18,6 +18,7 @@ const FormModal = ({ esconder,classe, opacity ,closeModal,update }) => {
             update()
             closeModal({target:{className:'FormModal'}})
             setInput('')
+            success('Categoria adicionado com sucesso')
         }
         // console.log('result',result)
        

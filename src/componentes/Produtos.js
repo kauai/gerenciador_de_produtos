@@ -1,6 +1,7 @@
 import React, { Component,Fragment } from 'react'
 import { MdDeleteForever } from 'react-icons/md'
 import { Route,Link } from 'react-router-dom'
+import Noty from 'noty'
 import axios from 'axios'
 import Api from './Api'
 
@@ -20,6 +21,49 @@ export default class Produtos extends Component {
        this.updateCategoria()
     }
 
+    showInfo(message){
+      new Noty({
+        type:"info",
+        theme:"bootstrap-v4",
+        layout:"topRight",
+        text:message,
+        timeout:"3000"
+      }).show()
+    }
+
+    showSuccess(message){
+      new Noty({
+        type:"success",
+        theme:"bootstrap-v4",
+        layout:"bottomRight",
+        text:message,
+        timeout:"5000"
+      }).show()
+    }
+
+    notification = (e,id) => {
+      const t = this
+      const n = new Noty({
+        text: 'Tem certeza que deletar??',
+        theme:"bootstrap-v4",
+        type:'success',
+        buttons: [
+          Noty.button('YES', 'btn btn-success', function () {
+              console.log('button 1 clicked');
+              t.removeCategoria(e,id)
+              n.close();
+          }, {id: 'button1', 'data-status': 'ok'}),
+      
+          Noty.button('NO', 'btn btn-error', function () {
+              console.log('button 2 clicked');
+              n.close();
+          })
+        
+        ]
+      })
+      n.show()
+    }
+
     updateCategoria = async () => {
       // const categorias = (await axios.get('http://localhost:3001/categorias')).data
       const categorias = await Api.loadCategorias()
@@ -29,8 +73,9 @@ export default class Produtos extends Component {
     removeCategoria = async (e,catdId) => {
        e.preventDefault()
       //  const categorias = await axios.delete(`http://localhost:3001/categorias/${catdId}`)
-       const categorias = await Api.deleteCategoria(catdId)
-       this.updateCategoria()
+          const categorias = await Api.deleteCategoria(catdId)
+          this.showSuccess('Categoria deletada com sucesso')
+          this.updateCategoria()
     }
 
     formModal = (e) => {
@@ -47,7 +92,7 @@ export default class Produtos extends Component {
       // console.log(this.state.categorias)
     return (
       <>
-        {<FormModal esconder={this.esconder} classe={this.state.classe} opacity={this.state.modal ? '1': '0'} closeModal={ this.formModal } update={this.updateCategoria}/>}
+        {<FormModal esconder={this.esconder} classe={this.state.classe} opacity={this.state.modal ? '1': '0'} closeModal={ this.formModal } update={this.updateCategoria} success={this.showInfo}/>}
         <section className="produtos">
             {/* //FUNCIONA TBM DESTA MANEIRA!!!
               <Route exact={this.props.match.url} component={ProdutosHome}/> 
@@ -67,8 +112,14 @@ export default class Produtos extends Component {
                   marginBottom:'15px',
                   border:'none'
               }}>Nova categoria</button>
-            {this.state.categorias && this.state.categorias.map(item => {
-                return <Fragment key={Math.floor((Math.random() * 3000) + 4)}><Link className="LinkCategoria" to={`/produtos/categoria/${item.id}`}>{item.categoria}<MdDeleteForever onClick={(e) => this.removeCategoria(e,item.id)} style={{verticalAlign:'middle',cursor:'pointer'}} size="1em"/></Link><br/></Fragment>
+                {this.state.categorias && this.state.categorias.map(item => {
+                return <Fragment key={Math.floor((Math.random() * 3000) + 4)}>
+                <Link 
+                style={{
+                  background: '#FFF3E0',
+                  fontWeight:'500',
+                  padding:'5px'
+              }} className="LinkCategoria" to={`/produtos/categoria/${item.id}`}>{item.categoria}<MdDeleteForever onClick={(e) => this.notification(e,item.id).bind(this)} style={{verticalAlign:'middle',cursor:'pointer'}} size="1em"/></Link><br/></Fragment>
             })}
         </aside>
       </>
