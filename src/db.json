@@ -35,48 +35,12 @@
   ],
   "categorias": [
     {
-      "id": 1,
-      "categoria": "Surf wear"
+      "id": "4212a690-66f5-11e9-bb68-0f78d801f32f",
+      "categoria": "new categories"
     },
     {
-      "id": 2,
-      "categoria": "Restaurantes"
-    },
-    {
-      "id": 3,
-      "categoria": "Pizzarias"
-    },
-    {
-      "id": "2594f740-647d-11e9-ab07-3da1b31ca39d",
-      "categoria": "aaa"
-    },
-    {
-      "id": "26584740-647d-11e9-ab07-3da1b31ca39d",
-      "categoria": "aaa"
-    },
-    {
-      "id": "26be5c10-647d-11e9-ab07-3da1b31ca39d",
-      "categoria": "aaa"
-    },
-    {
-      "id": "2724bf00-647d-11e9-ab07-3da1b31ca39d",
-      "categoria": "aaa"
-    },
-    {
-      "id": "274cb960-647d-11e9-ab07-3da1b31ca39d",
-      "categoria": "aaa"
-    },
-    {
-      "id": "276c7660-647d-11e9-ab07-3da1b31ca39d",
-      "categoria": "aaa"
-    },
-    {
-      "id": "278c3360-647d-11e9-ab07-3da1b31ca39d",
-      "categoria": "aaa"
-    },
-    {
-      "id": "27aa90d0-647d-11e9-ab07-3da1b31ca39d",
-      "categoria": "aaa"
+      "id": "5110c6c0-66f7-11e9-8a22-65ac779b1465",
+      "categoria": "aaaaaaaa"
     }
   ]
 }

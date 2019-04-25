@@ -12,7 +12,6 @@ export default class Categoria extends Component {
    componentDidMount(){
       const { catId } = this.props.match.params
       this.loadData(catId)
-      console.log('DIDmOUNT')
     }
 
     loadData = async (id) => {
@@ -27,7 +26,6 @@ export default class Categoria extends Component {
         }
         
         const { categoria }   = categorias.filter(item => item.id == id)[0]
-        console.log('produtos',categoria)
         this.setState({ produtos,categoria,load:true })
     }
 
@@ -38,9 +36,6 @@ export default class Categoria extends Component {
 
 
   render() {
-    console.log(this.props)
-    // const target = this.state.categoria[0]
-    // const data = Object.assign({},target);
     return (
 
       <div style={{position:'relative'}}>

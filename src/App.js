@@ -4,8 +4,10 @@ import Nav from './componentes/Nav'
 import Home from './componentes/Home'
 import Sobre from './componentes/Sobre'
 import Produtos from './componentes/Produtos'
+import Noty from 'noty'
 import './bootstrap-v4.css'
 import './noty.css'
+
 
 
 class App extends Component {
@@ -19,6 +21,23 @@ class App extends Component {
     this.setState({ categorias })
   }
 
+  removeCategoria = async (e,catdId) => {
+    e.preventDefault()
+       const categorias = await this.props.api.deleteCategoria(catdId)
+       this.showSuccess('Categoria deletada com sucesso')
+       this.updateCategoria()
+ }
+
+ showSuccess(message){
+  new Noty({
+    type:"success",
+    theme:"bootstrap-v4",
+    layout:"bottomRight",
+    text:message,
+    timeout:"5000"
+  }).show()
+}
+
 
 
   render() {
@@ -30,7 +49,14 @@ class App extends Component {
               <Route exact path="/" component={Home}/>
               <Route path="/sobre" component={Sobre}/>
               <Route path="/produtos" render={(props) => {
-                  return <Produtos categorias={this.state.categorias} {...props} loadCategorias={this.updateCategoria}/>
+                 console.log('prop de app',props)
+                  return <Produtos 
+                  api={this.props.api}
+                  categorias={this.state.categorias} {...props} 
+                  loadCategorias={this.updateCategoria}
+                  removeCategoria={this.removeCategoria}
+                  showSuccess={this.showSuccess}
+                  />
               }}/>
           </div>
         </Fragment>

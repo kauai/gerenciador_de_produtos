@@ -1,0 +1,57 @@
+.FormModal {
+    transition:.4s ease-out;
+    position:fixed;
+    top:0;
+    bottom:0;
+    height:100%;
+    width:100%;
+    left:0;
+    right:0;
+    z-index:900;
+    background:rgba(0, 0, 0, 0.67);
+    align-items:center;
+    justify-content:center;
+    display:flex;
+}
+
+
+
+.box-modal{
+    width:30%;
+    background:#fff;
+    padding:44px;
+}
+
+input{
+    padding:10px;
+    font-size:18px;
+    width:100%;
+    box-sizing:border-box;
+    margin-bottom:15px;
+}
+
+button{
+    font-size:21px;
+    width:100%;
+    padding:10px;
+    border:none;
+    background:purple;
+    color:#fff;
+    cursor:pointer;
+}
+
+.open-modal {
+    /* transform:translate(0,-20%); */
+    transition:transform .4s ease-out;
+    opacity: 1;
+    transition: opacity .4s; 
+    visibility:visible;
+}
+
+.close-modal{
+    /* transform:translate(0,-60%); */
+    opacity: 0;
+    transition: opacity .4s; 
+    transition:transform .4s ease-out; 
+    visibility: hidden;
+} 

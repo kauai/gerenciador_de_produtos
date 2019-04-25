@@ -1,75 +1,48 @@
-import React, { Component,useState } from 'react'
-import axios from 'axios'
-const uuidv1 = require('uuid/v1');
+import React, { useState,useEffect } from 'react'
+import './modal.css'
 
-const FormModal = ({ esconder,classe, opacity ,closeModal,update,success }) => {
+
+const FormModal = (props) => {
     const [input, setInput ] = useState('')
+    const [classe, setClass ] = useState('')
+    const [close, setClose ] = useState(true)
 
-    function syncForm(e){
-       setInput(e.target.value)
-    }
+   //  function syncForm(e){
+   //     setInput(e.target.value)
+   //  }
 
-   async function enviaForm() {
-        const result = await axios.post('http://localhost:3001/categorias',{  
-            id:uuidv1(),
-            categoria:input
-        })
-        if(result.status == 201){
-            update()
-            closeModal({target:{className:'FormModal'}})
-            setInput('')
-            success('Categoria adicionado com sucesso')
+   //  click(function openModal(){
+   //      setClass('open-modal')
+   //  })
+
+   useEffect(() => {
+         setClose(!close)
+   },[props.modal])
+
+
+
+     function clickOverlay(e) {
+        if(e.target.className.match(/FormModal/g)) {
+         setClose(!close)
         }
-        // console.log('result',result)
-       
-   }
+     }
 
-    console.log(input)
-    return (
-      <div onClick={ closeModal } style={{
-          opacity:`${opacity}`,
-          transition:'.4s ease-out',
-          position:'fixed',
-          top:'0',
-          bottom:'0',
-          height:'100%',
-          width:'100%',
-          left:'0',
-          right:'0',
-          zIndex:'900',
-          background:'rgba(0, 0, 0, 0.67)',
-          alignItems:'center',
-          justifyContent:'center',
-          display:'flex',
-      }}
-      className={`FormModal ${esconder}`}>
-         <div className={`boxModal ${classe}`} style={{
-                width:'30%',
-                background:'#fff',
-                padding:'44px',
-         }}>
-            <h2>Nova categoria</h2>
-            <input onChange={syncForm}
-            value={ input }
-            placeholder="Nova categoria" 
-            style={{
-                padding:'10px',
-                fontSize:'18px',
-                width:'100%',
-                boxSizing:'border-box',
-                marginBottom:'15px'
-            }}/>
-            <button onClick={enviaForm} style={ {
-                    fontSize:'21px',
-                    width: '100%',
-                    padding:'10px',
-                    border: 'none',
-                    background: 'purple',
-                    color: '#fff',
-                    cursor:'pointer'
-}}>Criar</button>
-         </div>
-      </div>
-    )
+     function postInput(e){
+        setInput(e.target.value)
+     }
+    console.log('HOOK',close)
+     return (
+        <div onClick={clickOverlay} className={`FormModal ${close ? 'open-modal' :'close-modal'}`}>
+           <div className='box-modal'>
+              <h2>Nova categoria</h2>
+              <input value={input} onChange={postInput} placeholder="Nova categoria"/>
+              <button onClick={() => {
+                 props.post(input)
+                 setClose(!close)
+                 setInput('')
+              }}>Criar</button>
+           </div>
+        </div>
+      )
 }
 export default FormModal
