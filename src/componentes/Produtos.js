@@ -11,12 +11,14 @@ import FormModal from './FormModal';
 export default class Produtos extends Component {
     state = {
         modal:false,
-        classe:''
+        classe:'',
+        load:false
     }
 
 
     componentDidMount(){
        this.props.loadCategorias()
+       this.setState({load:true})
     }
 
     showInfo(message){
